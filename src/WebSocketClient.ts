@@ -6,24 +6,24 @@ export class WebSocketClient
 
     constructor(url: string)
     {
-        this.socket = new WebSocket(url)
+        this.socket = new WebSocket(url);
     }
 
     onEvent(channel: string, callback: (data: WebSocket.Data)=> any)
     {
-        this.socket.on('open', ()=>{
+        this.socket.on('open', () => {
+
             let message = JSON.stringify({
                 type: 'subscribe',
                 channel
-            })
+            });
 
-            console.log(message)
-            this.socket.send(message)
-        })
+            this.socket.send(message);
+        });
 
         this.socket.on('message', (data: WebSocket.Data)=>{
-            return callback(data)
-        })
+            return callback(this.handleWebSocketData(data));
+        });
     }
 
     emit(channel: string, data: WebSocket.Data)
@@ -33,7 +33,11 @@ export class WebSocketClient
                 type: 'publish',
                 channel,
                 data
-            }))
-        })
+            }));
+        });
+    }
+
+    private handleWebSocketData(data: WebSocket.Data){
+        return JSON.parse(data.toString())
     }
 }   
