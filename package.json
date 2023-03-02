@@ -1,0 +1,28 @@
+{
+  "name": "client-websocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grupo-Cometa/client-websocket.git"
+  },
+  "keywords": [],
+  "author": "Grupo Cometa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grupo-Cometa/client-websocket/issues"
+  },
+  "homepage": "https://github.com/Grupo-Cometa/client-websocket#readme",
+  "devDependencies": {
+    "@types/ws": "^8.5.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "ws": "^8.12.1"
+  }
+}
