@@ -1,43 +1,33 @@
 import WebSocket from 'ws';
 
 export class WebSocketClient
-{
-    private socket: WebSocket;
+{    
+    constructor(private url: string, private token: string, private channel: string){}
 
-    constructor(url: string)
-    {
-        this.socket = new WebSocket(url);
-    }
+    sendMessage(data: any){
 
-    onEvent(channel: string, callback: (data: any)=> any)
-    {
-        this.socket.on('open', () => {
-
-            let message = JSON.stringify({
-                type: 'subscribe',
-                channel
-            });
-
-            this.socket.send(message);
+        const socket = new WebSocket(this.url, {
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                channel: this.channel
+            }
         });
 
-        this.socket.on('message', (data: WebSocket.Data)=>{
-            return callback(this.handleWebSocketData(data));
-        });
+        socket.on('open', ()=>{
+            socket.send(data)
+        })
     }
 
-    emit(channel: string, data: WebSocket.Data)
-    {
-        this.socket.on('open', ()=>{
-            this.socket.send(JSON.stringify({
-                type: 'publish',
-                channel,
-                data
-            }));
+    onMessage(callback: (data: any) => any){
+        const socket = new WebSocket(this.url, {
+            headers: {
+                Authorization: this.token,
+                channel: this.channel
+            }
         });
-    }
 
-    private handleWebSocketData(data: WebSocket.Data){
-        return JSON.parse(data.toString())
+        socket.on('message', (data: any)=>{
+            return callback(data)
+        })
     }
 }   
