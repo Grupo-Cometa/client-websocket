@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 
-export default class WebSocketClient
+export class WebSocketClient
 {
     private socket: WebSocket;
 

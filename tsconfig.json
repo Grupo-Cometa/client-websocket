@@ -1,12 +1,10 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "target": "es5",
-      "lib": ["es6", "dom"],
-      "sourceMap": true,
-      "outDir": "./dist",
-      "declaration": true
-    },
-    "include": ["./src/**/*"]
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "lib",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true
+  }
 }
