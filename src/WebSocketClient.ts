@@ -9,7 +9,7 @@ export default class WebSocketClient
         this.socket = new WebSocket(url)
     }
 
-    onEvent(channel: string, callback: (data: any)=> any)
+    onEvent(channel: string, callback: (data: WebSocket.Data)=> any)
     {
         this.socket.on('open', ()=>{
             let message = JSON.stringify({
@@ -21,12 +21,12 @@ export default class WebSocketClient
             this.socket.send(message)
         })
 
-        this.socket.on('message', (data: any)=>{
+        this.socket.on('message', (data: WebSocket.Data)=>{
             return callback(data)
         })
     }
 
-    emit(channel: string, data: any)
+    emit(channel: string, data: WebSocket.Data)
     {
         this.socket.on('open', ()=>{
             this.socket.send(JSON.stringify({
