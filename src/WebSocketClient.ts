@@ -9,7 +9,7 @@ export class WebSocketClient
         this.socket = new WebSocket(url);
     }
 
-    onEvent(channel: string, callback: (data: WebSocket.Data)=> any)
+    onEvent(channel: string, callback: (data: any)=> any)
     {
         this.socket.on('open', () => {
 
