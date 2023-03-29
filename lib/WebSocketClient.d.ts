@@ -1,7 +1,6 @@
-import WebSocket from 'ws';
 export declare class WebSocketClient {
-    private socket;
+    private url;
     constructor(url: string);
-    onEvent(channel: string, callback: (data: WebSocket.Data) => any): void;
-    emit(channel: string, data: WebSocket.Data): void;
+    sendMessage(channel: string, data: any): void;
+    onMessage(channel: string, callback: (data: any) => any): void;
 }
