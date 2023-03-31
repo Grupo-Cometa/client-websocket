@@ -30,8 +30,8 @@ export class WebSocketClient
             )
         }
 
-        socket.onmessage = (message: any) => {
-            return callback(message)
+        socket.onmessage = (message: MessageEvent) => {
+            return callback(message.data)
         }
     }
 }   
